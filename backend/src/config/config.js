@@ -1,6 +1,6 @@
-require('dotenv').config();
+require('dotenv').config({ path: "../.env" });
 
-const config = {
+module.exports= {
   development: {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
@@ -23,4 +23,3 @@ const config = {
     dialect: process.env.DB_DIALECT,
   },
 };
-module.exports = config;
