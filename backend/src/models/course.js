@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Course = sequelize.define(
-    "Course",
+    "Courses",
     {
       name: {
         type: DataTypes.STRING,
@@ -23,14 +23,15 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
       createdAt: "created_at",
       updatedAt: "updated_at",
+      courseId: "id"
     }
   );
 
   Course.associate = (models) => {
     Course.belongsToMany(models.Student, {
-      through: "StudentCourse",
-      foreignKey: "courseId",
-      otherKey: "studentId",
+      through: "StudentCourses",
+      foreignKey: "course_id",
+      otherKey: "student_id",
     });
   };
 

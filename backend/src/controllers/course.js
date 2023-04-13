@@ -21,7 +21,8 @@ const getCourseById = async (req, res) => {
   try {
     const course = await courseModule.getCourseById(req.params.id);
     if (!course) return res.status(404).send("Course not found");
-    return res.status(200).send(course);
+    const courseWithStudents = await courseModule.getCourseWithStudentsById(req.params.id);
+    return res.status(200).send(courseWithStudents);
   } catch (error) {
     return res.status(500).send(e.message);
   }

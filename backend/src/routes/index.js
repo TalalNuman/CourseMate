@@ -11,10 +11,10 @@ const defaultRoutes = [
         path: '/course',
         route: require('../routes/course'),
     },
-    // {
-    //     path: '/student_course',
-    //     route: require('../controllers/studentCourse'),
-    // },
+    {
+        path: '/enrolled',
+        route: require('../routes/studentCourse'),
+    },
 ];
 
 defaultRoutes.forEach((route) => {

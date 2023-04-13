@@ -32,7 +32,10 @@ const updateStudent = async (req, res) => {
     const student = await studentModule.getStudentById(req.params.id);
     if (!student) return res.status(404).send("Student not found");
 
-    const updatedStudent = await studentModule.updateStudent(req.params.id, req.body);
+    const updatedStudent = await studentModule.updateStudent(
+      req.params.id,
+      req.body
+    );
     return res.status(200).send("Updated");
   } catch (error) {
     return res.status(500).send(error.message);
@@ -44,7 +47,7 @@ const deleteStudent = async (req, res) => {
     const student = await studentModule.getStudentById(req.params.id);
     if (!student) return res.status(404).send("Student not found");
 
-    const deletedStudent = await studentModule.deleteStudent(req.params.id);
+    await studentModule.deleteStudent(req.params.id);
     return res.status(200).send("Deleted Successfully");
   } catch (error) {
     return res.status(500).send(error.message);
