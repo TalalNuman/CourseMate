@@ -12,8 +12,16 @@ const defaultRoutes = [
         route: require('../routes/course'),
     },
     {
+        path: '/teacher',
+        route: require('../routes/teacher'),
+    },
+    {
         path: '/enrolled',
         route: require('../routes/studentCourse'),
+    },
+    {
+        path: '/assigned',
+        route: require('../routes/teacherCourse'),
     },
 ];
 

@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "Students",
           key: "id",
         },
+        allowNull: false,
       },
       course_id: {
         type: DataTypes.INTEGER,
@@ -20,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "Courses",
           key: "id",
         },
+        allowNull: false,
       },
     },
     {
