@@ -10,7 +10,7 @@ const getAllStudents = async () => {
       include: [
         [
           sequelize.literal(
-            `(SELECT COUNT(DISTINCT student_id, course_id) FROM StudentCourses WHERE student_id = id)`
+            `(SELECT COUNT(DISTINCT course_id) FROM StudentCourses WHERE student_id = Students.id)`
           ),
           "course_count",
         ],
