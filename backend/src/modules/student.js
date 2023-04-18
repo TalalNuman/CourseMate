@@ -16,7 +16,7 @@ const getAllStudents = async () => {
         ],
       ],
     },
-    include: [{ model: Course, attributes: [] }],
+    include: [{ model: Course, as: "courses", attributes: [] }],
   });
 
   return students;
@@ -28,6 +28,7 @@ const getStudentById = async (id) => {
     },
     include: {
       model: Course,
+      as: "courses", // use the alias name "courses"
       through: {
         model: StudentCourse,
         attributes: [],
@@ -52,14 +53,10 @@ const updateStudent = async (id, body) => {
   return student;
 };
 
-const deleteStudent = async () => {
-  const student = await Student.destroy({
-    where: {
-      id: id,
-    },
-  });
+const deleteStudent = async (student) => {
+  await student.destroy();
 
-  return student;
+  return "deleted";
 };
 
 module.exports = {

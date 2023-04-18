@@ -23,18 +23,20 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
       createdAt: "created_at",
       updatedAt: "updated_at",
-      courseId: "id"
+      courseId: "id",
     }
   );
 
   Course.associate = (models) => {
     Course.belongsToMany(models.Student, {
       through: "StudentCourses",
+      as: "students",
       foreignKey: "course_id",
       otherKey: "student_id",
     });
     Course.belongsToMany(models.Teacher, {
       through: "TeacherCourses",
+      as: "teachers",
       foreignKey: "course_id",
       otherKey: "teacher_id",
     });

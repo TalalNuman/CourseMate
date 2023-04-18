@@ -30,6 +30,16 @@ module.exports = (sequelize, DataTypes) => {
       updatedAt: "updated_at",
     }
   );
+  StudentCourse.associate = (models) => {
+    StudentCourse.belongsTo(models.Student, {
+      foreignKey: "student_id",
+      otherKey: "id",
+    });
+    StudentCourse.belongsTo(models.Course, {
+      foreignKey: "course_id",
+      otherKey: "id",
+    });
+  };
 
   return StudentCourse;
 };

@@ -16,7 +16,13 @@ const getAllCourses = async () => {
         ],
       ],
     },
-    include: [{ model: Student, attributes: [] }],
+    include: [
+      {
+        model: Student,
+        as: "students", // use the alias name "students"
+        attributes: [],
+      },
+    ],
   });
 
   return courses;
@@ -36,6 +42,7 @@ const getCourseWithStudentsById = async (id) => {
     },
     include: {
       model: Student,
+      as: "students", // use the alias name "students"
       through: {
         model: StudentCourse,
         attributes: [],

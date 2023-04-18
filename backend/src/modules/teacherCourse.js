@@ -45,10 +45,27 @@ const deleteTeacherCourse = async (teacherCourse) => {
   await teacherCourse.destroy();
 };
 
+const deleteTeacherCourseByTeacherId = async (teacherId) => {
+  const teacherCourses = await TeacherCourse.destroy({
+    where: {
+      teacher_id: teacherId,
+    },
+  });
+};
+const deleteTeacherCourseByCourseId = async (courseId) => {
+  const teacherCourses = await TeacherCourse.destroy({
+    where: {
+      course_id: courseId,
+    },
+  });
+};
+
 module.exports = {
   createTeacherCourse,
   getAllTeacherCourses,
   getTeacherCourseById,
   updateTeacherCourse,
   deleteTeacherCourse,
+  deleteTeacherCourseByTeacherId,
+  deleteTeacherCourseByCourseId,
 };

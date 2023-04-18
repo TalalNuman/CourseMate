@@ -20,8 +20,10 @@ const getCourses = async (req, res) => {
 const getCourseById = async (req, res) => {
   try {
     const course = await courseModule.getCourseById(req.params.id);
-    if (!course) return res.status(404).send("Course not found");
-    const courseWithStudents = await courseModule.getCourseWithStudentsById(req.params.id);
+    if (!course) return res.status(204).send("Course not found");
+    const courseWithStudents = await courseModule.getCourseWithStudentsById(
+      req.params.id
+    );
     return res.status(200).send(courseWithStudents);
   } catch (error) {
     return res.status(500).send(e.message);
@@ -30,11 +32,15 @@ const getCourseById = async (req, res) => {
 
 const updateCourse = async (req, res) => {
   try {
+    console.log("req.body", req.body);
     const course = await courseModule.getCourseById(req.params.id);
-    if (!course) return res.status(404).send("Course not found");
+    if (!course) return res.status(204).send("Course not found");
 
-    const updatedCourse = await courseModule.updateCourse(req.params.id, req.body);
-    return res.status(200).send("Updated successfully");
+    const updatedCourse = await courseModule.updateCourse(
+      req.params.id,
+      req.body
+    );
+    return res.status(200).send({ message: "Updated successfully" });
   } catch (error) {
     return res.status(500).send(e.message);
   }
@@ -43,10 +49,10 @@ const updateCourse = async (req, res) => {
 const deleteCourse = async (req, res) => {
   try {
     const course = await courseModule.getCourseById(req.params.id);
-    if (!course) return res.status(404).send("Course not found");
+    if (!course) return res.status(204).send("Course not found");
 
     await courseModule.deleteCourse(req.params.id);
-    return res.status(200).send("Course deleted");
+    return res.status(200).send({ message: "Course deleted" });
   } catch (error) {
     return res.status(500).send(e.message);
   }

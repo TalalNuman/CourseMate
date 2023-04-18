@@ -16,7 +16,7 @@ const getAllTeachers = async () => {
         ],
       ],
     },
-    include: [{ model: Course, attributes: [] }],
+    include: [{ model: Course, as: "courses", attributes: [] }],
   });
 
   return teachers;
@@ -36,6 +36,7 @@ const getTeacherWithCoursesById = async (id) => {
     },
     include: {
       model: Course,
+      as: "courses", // use the alias name "courses"
       through: {
         model: TeacherCourse,
         attributes: [],
@@ -44,7 +45,7 @@ const getTeacherWithCoursesById = async (id) => {
     },
   });
   return teacher;
-}
+};
 const updateTeacher = async (id, body) => {
   const teacher = await Teacher.update(
     {
